@@ -1,0 +1,87 @@
+#!/bin/sh
+make rebuild
+if [ -e bash_test ]; then
+rm -r bash_test 
+fi
+echo " "
+echo "----Starting Tests----"
+echo " "
+./main.byte init
+mkdir bash_test 
+echo "some cool text" >> newfile.txt
+cd bash_test
+mkdir sub 
+cd sub
+mkdir sub
+cd sub
+echo "This is deep in a directory. This is 3110." >> subfile.txt
+cd ../../..
+./main.byte add bash_test
+./main.byte commit -m "bash commit"
+if ./main.byte log | grep -q '00000000000000000000000000000000 fa9879a06e8e58e366830f49bef6b7b8'; then
+echo "----TEST PASS----"
+else 
+echo "!----LOG TEST FAILURE----!" 
+fi
+echo "This is from a bash-script. This is 3110" >> bash_test/shallowfile.txt
+./main.byte add bash_test
+if cat .git-ml/index | grep -q 'shallowfile.txt'; then
+echo "----TEST PASS----"
+else 
+echo "!----INDEX TEST FAILURE----!" 
+fi
+./main.byte commit -m "second bash commit"
+if grep -q -r 'This is from a bash-script.' .git-ml/objects; then
+echo "----TEST PASS----"
+else 
+echo "!----OBJECTS TEST FAILURE----!" 
+fi
+
+if ./main.byte log | grep -q 'fa9879a06e8e58e366830f49bef6b7b8 df20e5d1d6ad74925c8258d1addf87c1'; then
+echo "----TEST PASS----"
+else 
+echo "!----LOG TEST 2 FAILURE----!" 
+fi
+
+if cat .git-ml/refs/heads/master | grep -q 'df20e5d1d6ad74925c8258d1addf87c1'; then
+echo "----TEST PASS----"
+else 
+echo "!----HEAD CHECK TEST FAILURE----!" 
+fi
+echo "This is overwritten. This is 3110" >> bash_test/sub/sub/subfile.txt 
+./main.byte add bash_test
+./main.byte commit -m "overwrite test"
+if ./main.byte cat-file e924c1bf9f9489f16ff4272087b5d4ff | grep -q '6cc2f18042c2fbeb880c077fbcb2cc0c'; then
+echo "----TEST PASS----"
+else 
+echo "!----CAT FILE OVERWRITE TEST FAILURE----!" 
+fi
+
+if ./main.byte log | grep -q 'df20e5d1d6ad74925c8258d1addf87c1 1e4aeacece3712f713a94845caec11fb'; then
+echo "----TEST PASS----"
+else 
+echo "!----LOG TEST 3 FAILURE----!" 
+fi
+
+./main.byte checkout -b newbranch
+rm -r bash_test/sub
+echo "This is from another branch this is 3110" > bash_test/shallowfile.txt
+./main.byte add bash_test
+./main.byte commit -m "newbranch commit"
+./main.byte checkout -b master
+
+if cat bash_test/shallowfile.txt | grep -q 'This is from another branch'; then
+echo "!--BRANCH TEST FAILURE--!"
+else
+echo "----TEST PASS----"
+fi
+
+./main.byte checkout -b newbranch
+
+if cat bash_test/shallowfile.txt | grep -q 'This is from another branch'; then
+echo "----TEST PASS----"
+else
+echo "!--BRANCH TEST FAILURE--!"
+fi
+
+
