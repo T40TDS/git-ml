@@ -1,4 +1,4 @@
-## Midterm Project
+# Midterm Project
 
 ------ INSTALL GUIDE ------
 
@@ -28,16 +28,16 @@ Head over to any directory and run the command: git-ml init
 
 Here are some useful features and commands to explore:
 
-git-ml add [file path]
-git-ml commit -m "[commit message]"
-git-ml checkout -- [folder path]
-git-ml checkout -b [branch name]
-git-ml rm [path to a file]
-git-ml status
-git-ml diff
-git-ml log
-git-ml hash-object [file path]
-git-ml cat-file [md5 hash pointer]
+* git-ml add [file path]
+* git-ml commit -m "[commit message]"
+* git-ml checkout -- [folder path]
+* git-ml checkout -b [branch name]
+* git-ml rm [path to a file]
+* git-ml status
+* git-ml diff
+* git-ml log
+* git-ml hash-object [file path]
+* git-ml cat-file [md5 hash pointer]
 
 Here are some mini tutorials:
 
@@ -45,7 +45,7 @@ Here are some mini tutorials:
 
 
 
-__Working with branches__
+## Working with branches
 
 to switch to an existing branch, or create a new branch use
 
@@ -63,7 +63,7 @@ to go back to master. Any removed files, or any changes will be restored. That i
 
 
 
-__status and diffs__
+## status and diffs
 
 Go ahead and add some files with 
 
@@ -107,7 +107,7 @@ git-ml diff
 
 
 
-__branching and checkout__
+## branching and checkout
 
 Before trying checkout, try the following 
 
