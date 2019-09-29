@@ -8,11 +8,18 @@ This might work on OS X, we give no assurances. Do not try this with DOS windows
 Instructions:
 
 Unpack the zip into ~/cs3110-a6
-run the command: make build
+
+Run the command: make build
+
 => this will build the binaries into ~/cs3110-a6/_build
-run the command: chmod +x vm-git-ml.sh
-run the commmand: ./vm-git-ml.sh
-=> this will install a bash script (git-ml) that will allow you to run git-ml from anywhere, as long as the complied binaries are in ~/cs3110-a6
+
+Run the command: chmod +x vm-git-ml.sh
+
+Run the commmand: ./vm-git-ml.sh
+
+=> this will install a bash script (git-ml) that will allow you to run git-ml from anywhere, as long as the complied binaries are in 
+~/cs3110-a6
+
 => this is the part that may required modification to run on OS X, the bash script is really not that complicated, if you really want to run this on OS X and not the VM, modification should be easy
 
 
