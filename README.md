@@ -3,8 +3,7 @@
 ------ INSTALL GUIDE ------
 
 The guide is built to be run on the CS 3110 Ubunutu VM, or an Ubuntu distro. 
-This might work on OS X, we give no assurances. Do not try this with windows. This is far more likely to work on your toaster
-than on a DOS based OS
+This might work on OS X, we give no assurances. Do not try this with DOS windows. It may work on WSL. However, this is far more likely to work on your toaster than on a DOS based OS
 
 Instructions:
 
